@@ -1,0 +1,6 @@
+framework module Pods_NasaWorkday_NasaWorkdayUITests {
+  umbrella header "Pods-NasaWorkday-NasaWorkdayUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
