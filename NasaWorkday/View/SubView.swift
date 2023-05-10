@@ -14,18 +14,19 @@ struct SubView: View {
 
     var body: some View {
         VStack {
-            KFImage(URL(string: nasaPost.href))
+            KFImage(URL(string: nasaPost.image))
                             .placeholder {
                                 Image(systemName: "photo")
                                     .foregroundColor(.gray)
                             }
                             .resizable()
                             .scaledToFit()
-            Text(nasaPost.title ?? "")
+            Text(nasaPost.title)
                 .padding()
             Text(nasaPost.description ?? "")
             Spacer()
-
         }
+        .navigationTitle(nasaPost.date ?? "No date")
+
     }
 }

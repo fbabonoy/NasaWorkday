@@ -43,7 +43,7 @@ struct NasaDataView: View {
 
     var body: some View {
         HStack {
-            KFImage(URL(string: result.href))
+            KFImage(URL(string: result.image))
                             .placeholder {
                                 Image(systemName: "photo")
                                     .foregroundColor(.gray)
@@ -53,7 +53,7 @@ struct NasaDataView: View {
                             .frame(width: getImageWidth(), height: 100)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
-                Text(result.title ?? "")
+                Text(result.title)
                     .font(.headline)
                     .lineLimit(1)
                 if let description = result.description {

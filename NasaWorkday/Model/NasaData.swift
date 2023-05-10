@@ -4,19 +4,20 @@
 //
 //  Created by fernando babonoyaba on 5/9/23.
 //
-
 import Foundation
 
 struct NasaData: Hashable {
     let id = UUID()
-    let title: String?
+    let title: String
     let description: String?
-    let href: String
+    let image: String
+    let date: String?
 
     enum CodingKeys: String, CodingKey {
         case title
         case description
-        case href
+        case href = "image"
+        case date = "date_created"
     }
 }
 
@@ -37,11 +38,13 @@ struct PostData: Codable {
     let title: String?
     let description: String?
     let mediaType: MediaType?
+    let dateCreated: String?
 
     enum CodingKeys: String, CodingKey {
         case title
         case description
         case mediaType = "media_type"
+        case dateCreated = "date_created"
     }
 }
 
@@ -51,5 +54,4 @@ struct Link: Codable {
 
 enum MediaType: String, Codable {
     case image
-
 }

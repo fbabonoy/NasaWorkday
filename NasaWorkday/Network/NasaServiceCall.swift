@@ -48,12 +48,23 @@ struct NasaServiceCall: NasaServiceCallProtocol {
 
                     let description = item.data.first?.description
                     let imageUrl = item.links.first?.href
+                    let dateCreated = getFormattedDate(dateCreated: item.data.first?.dateCreated)
 
-                    return NasaData(title: title, description: description, href: imageUrl ?? "")
+                    return NasaData(title: title, description: description, image: imageUrl ?? "", date: dateCreated)
                     }
 
                 return breeds
             }
             .eraseToAnyPublisher()
+    }
+
+    func getFormattedDate(dateCreated: String?) -> String {
+        guard let date = dateCreated else { return ""}
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        guard let date = dateFormatter.date(from: date) else { return ""}
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate
     }
 }
