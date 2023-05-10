@@ -13,7 +13,11 @@ enum NasaServiceError: Error {
     case invalidEndpoint
 }
 
-struct NasaServiceCall {
+protocol NasaServiceCallProtocol {
+    func getAllData() -> AnyPublisher<[NasaData], Error>
+}
+
+struct NasaServiceCall: NasaServiceCallProtocol {
     let session: URLSession
 
     init(session: URLSession = .shared) {
