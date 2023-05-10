@@ -71,4 +71,3 @@ struct NasaServiceCall: NasaServiceCallProtocol {
         return formattedDate
     }
 }
-
