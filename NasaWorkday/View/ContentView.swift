@@ -33,6 +33,7 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Nasa Posts")
+            .searchable(text: $viewModel.searchText)
             .listStyle(.insetGrouped)
         }
     }
@@ -53,7 +54,7 @@ struct NasaDataView: View {
                             .frame(width: getImageWidth(), height: 100)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
-                Text(result.title)
+                Text(result.title ?? "no title")
                     .font(.headline)
                     .lineLimit(1)
                 if let description = result.description {

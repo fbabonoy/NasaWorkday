@@ -21,7 +21,7 @@ struct SubView: View {
                             }
                             .resizable()
                             .scaledToFit()
-            Text(nasaPost.title)
+            Text(nasaPost.title ?? "")
                 .padding()
             Text(nasaPost.description ?? "")
             Spacer()

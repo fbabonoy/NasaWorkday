@@ -22,9 +22,39 @@ class NasaViewModel: ObservableObject {
     @Published var state: NasaViewModelState = .loading
     @Published var hasMoreResults = true
     @Published var results = [NasaData]()
+    @Published var searchText: String = ""
 
     init(serviceCall: NasaServiceCallProtocol = NasaServiceCall()) {
         self.serviceCall = serviceCall
+        search()
+    }
+
+    func search() {
+        $searchText.debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+            .sink {
+                guard !$0.isEmpty else {
+                    self.state = .loaded(loaded: self.results)
+                    return
+                }
+                self.filter()
+            }.store(in: &cancellables)
+    }
+
+    func filter() {
+        let filteredResults = self.results.filter {
+            guard let titleSearch = $0.title?.localizedCaseInsensitiveContains(searchText),
+                  let descriptionSearch = $0.description?.localizedCaseInsensitiveContains(searchText),
+                  let dateSearch = $0.date?.localizedCaseInsensitiveContains(searchText)
+            else {
+                return false
+            }
+            return titleSearch || descriptionSearch || dateSearch
+        }
+        if filteredResults.isEmpty {
+            state = .empty("No results found")
+        } else {
+            state = .loaded(loaded: filteredResults)
+        }
     }
 
     func loadAllBreeds() {
