@@ -14,7 +14,7 @@ enum NasaServiceError: Error {
 }
 
 protocol NasaServiceCallProtocol {
-    func getAllData() -> AnyPublisher<[NasaData], Error>
+    func getAllData(page: Int) -> AnyPublisher<[NasaData], Error>
 }
 
 struct NasaServiceCall: NasaServiceCallProtocol {
@@ -23,8 +23,9 @@ struct NasaServiceCall: NasaServiceCallProtocol {
     init(session: URLSession = .shared) {
         self.session = session
     }
-    func getAllData() -> AnyPublisher<[NasaData], Error> {
-        let endpoint = "https://images-api.nasa.gov/search?q=apollo%2011&description=moon%20landing&media_type=image"
+
+    func getAllData(page: Int) -> AnyPublisher<[NasaData], Error> {
+        let endpoint = "https://images-api.nasa.gov/search?media_type=image&page=\(page)&q=apollo%2011"
 
         guard let url = URL(string: endpoint) else {
             return Fail(error: NasaServiceError.invalidEndpoint).eraseToAnyPublisher()
@@ -59,12 +60,15 @@ struct NasaServiceCall: NasaServiceCallProtocol {
     }
 
     func getFormattedDate(dateCreated: String?) -> String {
-        guard let date = dateCreated else { return ""}
+        guard let oldDateFormat = dateCreated else { return ""}
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        guard let date = dateFormatter.date(from: date) else { return ""}
+
+        guard let date = dateFormatter.date(from: oldDateFormat) else { return ""}
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let formattedDate = dateFormatter.string(from: date)
+
         return formattedDate
     }
 }
+

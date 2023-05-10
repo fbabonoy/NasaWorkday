@@ -27,6 +27,7 @@ struct SubView: View {
             Spacer()
         }
         .navigationTitle(nasaPost.date ?? "No date")
+        .padding()
 
     }
 }

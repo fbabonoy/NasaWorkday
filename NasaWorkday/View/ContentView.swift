@@ -51,22 +51,30 @@ struct NasaDataView: View {
                             }
                             .resizable()
                             .scaledToFill()
-                            .frame(width: getImageWidth(), height: 100)
+                            .frame(width: getImageWidth())
                             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
-                Text(result.title ?? "no title")
-                    .font(.headline)
-                    .lineLimit(1)
+                if let title = result.title {
+                    Text(title)
+                        .font(.headline)
+                        .lineLimit(1)
+                }
+                Spacer()
                 if let description = result.description {
                     Text(description)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .lineLimit(3)
                 }
+                Spacer()
+                if let date = result.date {
+                    Text(date)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
             }
-            .padding(.leading, 10)
-
         }
+        .padding(.vertical, 5)
     }
 
     private func getImageWidth() -> CGFloat {

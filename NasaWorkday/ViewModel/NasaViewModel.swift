@@ -23,6 +23,7 @@ class NasaViewModel: ObservableObject {
     @Published var hasMoreResults = true
     @Published var results = [NasaData]()
     @Published var searchText: String = ""
+    @Published var currentPage = 1
 
     init(serviceCall: NasaServiceCallProtocol = NasaServiceCall()) {
         self.serviceCall = serviceCall
@@ -62,7 +63,7 @@ class NasaViewModel: ObservableObject {
 
         state = .loading
 
-        serviceCall.getAllData()
+        serviceCall.getAllData(page: currentPage)
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 switch completion {
@@ -81,7 +82,7 @@ class NasaViewModel: ObservableObject {
                 }
 
                 self.state = .loaded(loaded: self.results)
-
+                self.currentPage += 1
             }
             .store(in: &cancellables)
     }
