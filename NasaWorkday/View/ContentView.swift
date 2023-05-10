@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel: NasaViewModel
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -20,7 +20,7 @@ struct ContentView: View {
                     }
                 case .loaded(let results):
                     List(results, id: \.id) { result in
-                        Text(result.title ?? "")
+                        NasaDataView(result: result)
                     }
                 case .error(let error):
                     Text(error.localizedDescription)
@@ -33,7 +33,25 @@ struct ContentView: View {
             .listStyle(.insetGrouped)
         }
     }
+}
 
+struct NasaDataView: View {
+    let result: NasaData
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(result.title ?? "")
+                .font(.headline)
+                .lineLimit(1)
+            if let description = result.description {
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .lineLimit(3)
+            }
+        }
+        .padding(.leading, 10)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
