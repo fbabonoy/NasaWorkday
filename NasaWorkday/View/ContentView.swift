@@ -21,8 +21,10 @@ struct ContentView: View {
                     }
                 case .loaded(let results):
                     List(results, id: \.id) { result in
-                        NasaDataView(result: result)
-                    }
+                        NavigationLink(destination: SubView(nasaPost: result)) {
+                            NasaDataView(result: result)
+                        }
+                     }
                 case .error(let error):
                     Text(error.localizedDescription)
                         .padding()
@@ -48,7 +50,7 @@ struct NasaDataView: View {
                             }
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 75, height: 100)
+                            .frame(width: getImageWidth(), height: 100)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
             VStack(alignment: .leading) {
                 Text(result.title ?? "")
@@ -62,7 +64,13 @@ struct NasaDataView: View {
                 }
             }
             .padding(.leading, 10)
+
         }
+    }
+
+    private func getImageWidth() -> CGFloat {
+        let screenWidth = UIScreen.main.bounds.width
+        return screenWidth / 5
     }
 }
 

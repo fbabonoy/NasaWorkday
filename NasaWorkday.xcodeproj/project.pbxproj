@@ -10,6 +10,7 @@
 		24EC8BB42A0B064E0060BB2E /* NasaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC8BB32A0B064E0060BB2E /* NasaData.swift */; };
 		24EC8BB62A0B09D80060BB2E /* NasaServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC8BB52A0B09D80060BB2E /* NasaServiceCall.swift */; };
 		24EC8BB82A0B0D770060BB2E /* NasaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC8BB72A0B0D770060BB2E /* NasaViewModel.swift */; };
+		24EC8BBA2A0B240D0060BB2E /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EC8BB92A0B240D0060BB2E /* SubView.swift */; };
 		24FA97C72A0AFE24005079C9 /* NasaWorkdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FA97C62A0AFE24005079C9 /* NasaWorkdayApp.swift */; };
 		24FA97C92A0AFE24005079C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FA97C82A0AFE24005079C9 /* ContentView.swift */; };
 		24FA97CB2A0AFE25005079C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FA97CA2A0AFE25005079C9 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		24EC8BB32A0B064E0060BB2E /* NasaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaData.swift; sourceTree = "<group>"; };
 		24EC8BB52A0B09D80060BB2E /* NasaServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaServiceCall.swift; sourceTree = "<group>"; };
 		24EC8BB72A0B0D770060BB2E /* NasaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaViewModel.swift; sourceTree = "<group>"; };
+		24EC8BB92A0B240D0060BB2E /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 		24FA97C32A0AFE24005079C9 /* NasaWorkday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NasaWorkday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FA97C62A0AFE24005079C9 /* NasaWorkdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaWorkdayApp.swift; sourceTree = "<group>"; };
 		24FA97C82A0AFE24005079C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				24FA97C82A0AFE24005079C9 /* ContentView.swift */,
+				24EC8BB92A0B240D0060BB2E /* SubView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				24EC8BB62A0B09D80060BB2E /* NasaServiceCall.swift in Sources */,
 				24EC8BB82A0B0D770060BB2E /* NasaViewModel.swift in Sources */,
 				24FA97C92A0AFE24005079C9 /* ContentView.swift in Sources */,
+				24EC8BBA2A0B240D0060BB2E /* SubView.swift in Sources */,
 				24EC8BB42A0B064E0060BB2E /* NasaData.swift in Sources */,
 				24FA97C72A0AFE24005079C9 /* NasaWorkdayApp.swift in Sources */,
 			);
