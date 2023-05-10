@@ -42,7 +42,7 @@ struct NasaServiceCall: NasaServiceCallProtocol {
             .decode(type: NasaResponse.self, decoder: JSONDecoder())
             .map { response in
                 let items = response.collection.items.filter { $0.data.first?.mediaType == .image }
-                let breeds = items.compactMap { item -> NasaData? in
+                let nasaPosts = items.compactMap { item -> NasaData? in
                     guard let title = item.data.first?.title else {
                         return nil
                     }
@@ -54,7 +54,7 @@ struct NasaServiceCall: NasaServiceCallProtocol {
                     return NasaData(title: title, description: description, image: imageUrl ?? "", date: dateCreated)
                     }
 
-                return breeds
+                return nasaPosts
             }
             .eraseToAnyPublisher()
     }

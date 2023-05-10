@@ -58,7 +58,7 @@ class NasaViewModel: ObservableObject {
         }
     }
 
-    func loadAllBreeds() {
+    func loadAllPosts() {
         guard hasMoreResults else { return }
 
         state = .loading

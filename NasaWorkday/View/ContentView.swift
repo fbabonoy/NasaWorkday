@@ -17,7 +17,7 @@ struct ContentView: View {
                 switch viewModel.state {
                 case .loading:
                     ProgressView().task {
-                        self.viewModel.loadAllBreeds()
+                        self.viewModel.loadAllPosts()
                     }
                 case .loaded(let results):
                     List(results, id: \.id) { result in
