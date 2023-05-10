@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ContentView: View {
     @StateObject var viewModel: NasaViewModel
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -39,18 +40,29 @@ struct NasaDataView: View {
     let result: NasaData
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(result.title ?? "")
-                .font(.headline)
-                .lineLimit(1)
-            if let description = result.description {
-                Text(description)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .lineLimit(3)
+        HStack {
+            KFImage(URL(string: result.href))
+                            .placeholder {
+                                Image(systemName: "photo")
+                                    .foregroundColor(.gray)
+                            }
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 75, height: 100)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+            VStack(alignment: .leading) {
+                Text(result.title ?? "")
+                    .font(.headline)
+                    .lineLimit(1)
+                if let description = result.description {
+                    Text(description)
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                        .lineLimit(3)
+                }
             }
+            .padding(.leading, 10)
         }
-        .padding(.leading, 10)
     }
 }
 
